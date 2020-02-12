@@ -3,8 +3,20 @@
 /* eslint-disable no-undef */
 const express = require('express');
 const Battle = require('../models/battle');
-
+const csv = require('csvtojson');
+const path = require('path');
 const battleroute = express.Router();
+
+(async()=>{
+  try {
+    // Save battles.csv to mongodb
+    const jsonarray = await csv().fromFile(path.join(__dirname,"../battles.csv"));
+    const insertresult = await Battle.insertMany(jsonarray);
+    logger.info(`Battle: Csv Data inserted into mongo successfully`);
+  } catch (error) {
+    logger.error(`Battle: Error while inserting battle.csv to mongo`);
+  }
+})()
 
 // Get All Blogs for homepage
 battleroute.get('/', async (req, res) => {

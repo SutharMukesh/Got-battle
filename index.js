@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors')
+const cors = require('cors');
 
 const battle = require('./routes/battle');
 const logger = require('./logger');
@@ -17,10 +17,10 @@ mongoose.connect(process.env.MONGO, {
   useCreateIndex: true,
 });
 
+// register middlewares
 app.use(cors({
   exposedHeaders: ['x-auth-header'],
 }))
-// register middlewares
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
