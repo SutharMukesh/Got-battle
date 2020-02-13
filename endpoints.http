@@ -1,2 +1,14 @@
 ###
-GET http://localhost:3004/ H̥TTP/1.1
+GET http://localhost:3004/ HTTP/1.1
+
+###
+GET http://localhost:3004/list HTTP/1.1
+
+###
+GET http://localhost:3004/count HTTP/1.1
+
+###
+GET http://localhost:3004/search?king=Robb Stark HTTP/1.1
+
+###
+GET http://localhost:3004/search?location=Riverrun&year=300 HTTP/1.1

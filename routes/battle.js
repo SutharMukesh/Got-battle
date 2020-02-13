@@ -30,55 +30,47 @@ battleroute.get('/', async (req, res) => {
   }
 });
 
-// Get specific Battle
-battleroute.get('/:id', async (req, res) => {
+// Get List of  Battle locations
+battleroute.get('/list', async (req, res) => {
   try {
     logger.info(`Battle/: Get Battle ${req.params.id}`);
-    let blogs = await Battle.find({ _id: req.params.id });
-    res.status(200).send(blogs);
+    let locations = await Battle.find({},{ "location":1 });
+    res.status(200).send([...new Set(locations.map(loc=>loc.location).filter(a=>a.length>0))]);
   } catch (error) {
     logger.error(`Battle/: Error while finding Battle ${req.params.id}: ${((error.stack) ? error.stack : error)}`);
     res.status(400).send({ message: `Error while finding Battle ${req.params.id}: ${error}` });
   }
 });
 
-// Add new Battle
-battleroute.post('/add', async (req, res) => {
+// Get total number of battles occurred.
+battleroute.get('/count', async (req, res) => {
   try {
-    logger.info(`Battle/add: Adding Battle ${JSON.stringify(req.body)}`);
-    newblog = new Battle(req.body);
-    result = await newblog.save();
-    res.status(200).send({ message: 'Added Battle successfully' });
-
+    logger.info(`Battle/: Get Battles count`);
+    let Battles = await Battle.find({});
+    res.status(200).send({data:Battles.length});
   } catch (error) {
-    logger.error(`Battle/add: Error while inserting Battle: ${((error.stack) ? error.stack : error)}`);
-    res.status(400).send({ message: `Error while inserting Battle: ${error}` });
+    logger.error(`Battle/: Error while finding Battle count : ${((error.stack) ? error.stack : error)}`);
+    res.status(400).send({ message: `Error while finding Battle count : ${error}` });
   }
 });
 
-// Edit a Battle
-battleroute.post('/update/:id', async (req, res) => {
+
+// Get list of battles with search filter
+battleroute.get('/search', async (req, res) => {
   try {
-    logger.info(`Battle/update: Updating Battle ${JSON.stringify(req.body)}`);
-    await Battle.updateOne({ _id: req.params.id }, req.body, { runValidators: true });
-    res.status(200).send({ message: 'Battle details updated' });
+    logger.info(`Battle/: Search Battle for ${JSON.stringify(req.query)}`);
+    let blogs = await Battle.find(req.query);
+    if(blogs.length===0){
+      logger.warn(`Battle/search: No data found for search: ${JSON.stringify(req.query)}`)
+      res.status(300).send({message: `No data found for search: ${JSON.stringify(req.query)}`});
+    }else{
+      res.status(200).send(blogs);
+    }
   } catch (error) {
-    logger.error(`Battle/update: Error while updating Battle: ${((error.stack) ? error.stack : error)}`);
-    res.status(400).send({ message: `Error while updating Battle: ${error}` });
+    logger.error(`Battle/: Error while searching battle for: ${JSON.stringify(req.query)}: ${((error.stack) ? error.stack : error)}`);
+    res.status(400).send({ message: `Error while searching battle for: ${JSON.stringify(req.query)}: ${error}` });
   }
 });
 
-// Delete a Battle
-battleroute.delete('/:id', async (req, res) => {
-  // Only Supervisor can delete a product
-  try {
-    logger.info(`Battle/delete: Deleting Battle id: ${req.params.id}`);
-    result = await Battle.deleteOne({ _id: req.params.id });
-    res.status(200).send({ message: `delete Battle details: ${JSON.stringify(result)}` });
-  } catch (error) {
-    logger.error(`Battle/delete: Error while deleting Battle: ${((error.stack) ? error.stack : error)}`);
-    res.status(400).send({ message: `Error while deleting: ${error}` });
-  }
-});
 
 module.exports = battleroute;
