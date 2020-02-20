@@ -1,30 +1,33 @@
 import axios from "axios";
 
-export function onChange(value) {
+export function onChange(value, id) {
   return async function(dispatch) {
+    debugger;
     dispatch({
       type: "ON_CHANGE",
+      id,
       payload: value
     });
   };
 }
 
-export function setSuggestions(value) {
+export function setSuggestions(value, id) {
   return async function(dispatch) {
-    debugger
+    debugger;
     dispatch({
       type: "SET_SUGGESTIONS",
+      id,
       payload: value
     });
   };
 }
-export function setLocation(filters) {
+export function setBackendData(id) {
   return async function(dispatch) {
     try {
-      debugger;
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/list`);
       dispatch({
-        type: "SET_LOCATION",
+        type: "SET_BACKENDDATA",
+        id,
         payload: response.data
       });
     } catch (error) {

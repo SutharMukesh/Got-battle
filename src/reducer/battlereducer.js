@@ -1,21 +1,36 @@
 // import { FETCH_LOCATION, LOADING_STATE } from "../actions/types";
-const initialState = {};
+const initialState = {
+  locationid: {
+    backenddata: [],
+    value: "",
+    suggestion: []
+  },
+  battlenameid: {
+    backenddata: [],
+    value: "",
+    suggestion: []
+  },
+  regionid: {
+    backenddata: [],
+    value: "",
+    suggestion: []
+  }
+};
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case "SET_LOCATION":
-      debugger;
-      state.location = action.payload;
-      return { ...state };
     case "ON_CHANGE":
       debugger;
-      state.value = action.payload;
-      return { ...state };
+      state[action.id].value = action.payload;
+      return { ...state, [action.id]: { ...state[action.id] } };
+    case "SET_BACKENDDATA":
+      state[action.id].backenddata = action.payload;
+      return { ...state, [action.id]: { ...state[action.id] } };
     case "SET_SUGGESTIONS":
       debugger;
-      state.suggestions = action.payload;
-      return { ...state };
+      state[action.id].suggestion = action.payload;
+      return { ...state, [action.id]: { ...state[action.id] } };
     default:
-      return state;
+      return { ...state };
   }
 }

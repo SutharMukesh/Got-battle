@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import autosuggest from "../css/autosuggest.css";
 import {
-  setLocation,
+  setBackendData,
   onChange,
   setSuggestions
 } from "../actions/searchactions";
@@ -10,40 +10,38 @@ import Autosuggest from "react-autosuggest";
 
 class Search extends Component {
   async componentDidMount() {
-    await this.props.setLocation("FETCH_LOCATION");
+    this.props.setBackendData("locationid");
+    this.props.setBackendData("battlenameid");
+    this.props.setBackendData("regionid");
   }
 
-  escapeRegexCharacters=(str)=> {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+  escapeRegexCharacters = str => {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  };
 
-  getSuggestions = value => {
-    //   debugger;
+  getSuggestions = (value, id) => {
     const escapedValue = this.escapeRegexCharacters(value.trim());
-  
-  if (escapedValue === '') {
-    return [];
-  }
+    if (escapedValue === "") return [];
 
-  const regex = new RegExp(escapedValue, 'i');
-
-  return this.props.location.filter(location => regex.test(location));
+    const regex = new RegExp(escapedValue, "i");
+    this.props.setSuggestions(
+      this.props[id].backenddata.filter(location => regex.test(location)),
+      id
+    );
   };
 
   onChange = (event, { newValue, method }) => {
     debugger;
-    this.props.onChange(newValue);
+    this.props.onChange(newValue, event.target.id);
   };
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
-  onSuggestionsFetchRequested = ({ value }) => {
-    debugger;
+  onSuggestionsFetchRequested = ({ event, value }) => {
     this.props.setSuggestions(this.getSuggestions(value));
   };
 
   // Autosuggest will call this function every time you need to clear suggestions.
   onSuggestionsClearRequested = () => {
-    debugger;
     this.props.setSuggestions([]);
   };
 
@@ -57,32 +55,49 @@ class Search extends Component {
               <div className="form-group col-xs mr-2">
                 <label htmlFor="locationid">Location</label>
                 <Autosuggest
-                  suggestions={this.props.suggestions}
-                  onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                  onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                  getSuggestionValue={suggestion => suggestion}
-                  renderSuggestion={suggestion => (
-                    <div>{suggestion}</div>
-                  )}
+                  suggestions={this.props.locationid.suggestion}
+                  onSuggestionsFetchRequested={({ event, value }) => {
+                    debugger;
+                    this.getSuggestions(value, "locationid");
+                  }}
+                  onSuggestionsClearRequested={() => {
+                    debugger;
+                    this.props.setSuggestions([], "locationid");
+                  }}
+                  getSuggestionValue={suggestion => {
+                    debugger;
+                    return suggestion;
+                  }}
+                  renderSuggestion={suggestion => {
+                    debugger;
+                    return <div>{suggestion}</div>;
+                  }}
                   inputProps={{
                     placeholder: "Location",
-                    value: this.props.value,
-                    type: "search",
+                    id: "locationid",
+                    value: this.props.locationid.value,
                     className: "form-control",
                     onChange: this.onChange
                   }}
                 />
               </div>
-              <div className="form-group col-xs mr-2">
+              {/* <div className="form-group col-xs mr-2">
                 <label htmlFor="battleid">Battle Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="nameid"
-                  placeholder="battle"
-                  required
+                <Autosuggest
+                  suggestions={this.props.suggestions}
+                  onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                  onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                  getSuggestionValue={suggestion => suggestion}
+                  renderSuggestion={suggestion => <div>{suggestion}</div>}
+                  inputProps={{
+                    placeholder: "Battle Name",
+                    value: this.props.values.battlenameid,
+                    id: "battlenameid",
+                    className: "form-control",
+                    onChange: this.onChange
+                  }}
                 />
-              </div>
+              </div> */}
             </div>
             <div className="d-flex flex-row flex-wrap justify-content-center">
               <div className="form-group col-xs mr-2">
@@ -95,16 +110,23 @@ class Search extends Component {
                   required
                 />
               </div>
-              <div className="form-group col-xs mr-2">
+              {/* <div className="form-group col-xs mr-2">
                 <label htmlFor="regionid">Region</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="regionid"
-                  placeholder="region"
-                  required
+                <Autosuggest
+                  suggestions={this.props.suggestions}
+                  onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                  onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                  getSuggestionValue={suggestion => suggestion}
+                  renderSuggestion={suggestion => <div>{suggestion}</div>}
+                  inputProps={{
+                    placeholder: "Region",
+                    value: this.props.regionid.value,
+                    id: "regionid",
+                    className: "form-control",
+                    onChange: this.onChange
+                  }}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="d-flex flex-row justify-content-center">
@@ -116,20 +138,14 @@ class Search extends Component {
   }
 }
 
-Search.defaultProps = {
-  location: [],
-  value: "",
-  suggestions:[],
-};
-
 const mapStateToProps = state => ({
-  location: state.battlereducer.location,
-  value: state.battlereducer.value,
-  suggestions: state.battlereducer.suggestions,
+  locationid: state.battlereducer.locationid,
+  battlenameid: state.battlereducer.battlenameid,
+  regionid: state.battlereducer.regionid
 });
 
 export default connect(mapStateToProps, {
-  setLocation,
+  setBackendData,
   onChange,
   setSuggestions
 })(Search);
