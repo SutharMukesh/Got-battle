@@ -31,11 +31,19 @@ battleroute.get('/', async (req, res) => {
 });
 
 // Get List of  Battle locations
-battleroute.get('/list', async (req, res) => {
+battleroute.get('/list/:entity', async (req, res) => {
   try {
-    logger.info(`Battle/: Get Battle ${req.params.id}`);
-    let locations = await Battle.find({},{ "location":1 });
-    res.status(200).send([...new Set(locations.map(loc=>loc.location).filter(a=>a.length>0))]);
+    if(!req.params.entity) throw new Error(`No entity specified`);
+    
+    logger.info(`Battle/: Get list for ${req.params.entity}`);
+    let entity = await Battle.find({},{ [req.params.entity]:1 });
+    res
+      .status(200)
+      .send([
+        ...new Set(
+          entity.map(ent => ent[req.params.entity]).filter(a => a.length > 0)
+        )
+      ]);
   } catch (error) {
     logger.error(`Battle/: Error while finding Battle ${req.params.id}: ${((error.stack) ? error.stack : error)}`);
     res.status(400).send({ message: `Error while finding Battle ${req.params.id}: ${error}` });
@@ -62,7 +70,7 @@ battleroute.get('/search', async (req, res) => {
     let blogs = await Battle.find(req.query);
     if(blogs.length===0){
       logger.warn(`Battle/search: No data found for search: ${JSON.stringify(req.query)}`)
-      res.status(300).send({message: `No data found for search: ${JSON.stringify(req.query)}`});
+      res.status(204).send({message: `No data found for search: ${JSON.stringify(req.query)}`});
     }else{
       res.status(200).send(blogs);
     }

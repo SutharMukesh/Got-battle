@@ -1,8 +1,14 @@
 ###
-GET http://localhost:3004/ HTTP/1.1
+GET http://localhost:3004/
 
 ###
-GET http://localhost:3004/list HTTP/1.1
+GET http://localhost:3004/list/location HTTP/1.1
+
+###
+GET http://localhost:3004/list/region HTTP/1.1
+###
+GET http://localhost:3004/list/name HTTP/1.1
+
 
 ###
 GET http://localhost:3004/count HTTP/1.1
