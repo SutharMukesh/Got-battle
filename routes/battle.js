@@ -11,6 +11,7 @@ const battleroute = express.Router();
   try {
     // Save battles.csv to mongodb
     const jsonarray = await csv().fromFile(path.join(__dirname,"../battles.csv"));
+    await Battle.deleteMany({});
     const insertresult = await Battle.insertMany(jsonarray);
     logger.info(`Battle: Csv Data inserted into mongo successfully`);
   } catch (error) {
@@ -67,12 +68,12 @@ battleroute.get('/count', async (req, res) => {
 battleroute.get('/search', async (req, res) => {
   try {
     logger.info(`Battle/: Search Battle for ${JSON.stringify(req.query)}`);
-    let blogs = await Battle.find(req.query);
+    let blogs = await Battle.find(req.query, {"_id": 0});
     if(blogs.length===0){
       logger.warn(`Battle/search: No data found for search: ${JSON.stringify(req.query)}`)
       res.status(204).send({message: `No data found for search: ${JSON.stringify(req.query)}`});
     }else{
-      res.status(200).send(blogs);
+      res.status(200).send(JSON.stringify(blogs));
     }
   } catch (error) {
     logger.error(`Battle/: Error while searching battle for: ${JSON.stringify(req.query)}: ${((error.stack) ? error.stack : error)}`);
