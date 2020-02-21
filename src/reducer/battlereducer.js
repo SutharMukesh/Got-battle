@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
       state[action.id].backenddata = action.payload;
       return { ...state, [action.id]: { ...state[action.id] } };
     case "SET_SUGGESTIONS":
-      debugger;
+      // debugger;
       state[action.id].suggestion = action.payload;
       return { ...state, [action.id]: { ...state[action.id] } };
     default:

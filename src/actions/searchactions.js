@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function onChange(value, id) {
   return async function(dispatch) {
-    debugger;
+    // debugger;
     dispatch({
       type: "ON_CHANGE",
       id,
@@ -13,7 +13,7 @@ export function onChange(value, id) {
 
 export function setSuggestions(value, id) {
   return async function(dispatch) {
-    debugger;
+    // debugger;
     dispatch({
       type: "SET_SUGGESTIONS",
       id,
@@ -24,7 +24,17 @@ export function setSuggestions(value, id) {
 export function setBackendData(id) {
   return async function(dispatch) {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/list`);
+
+
+      let backenddataurl = {
+        "locationid":"/location",
+        "battlenameid":"/name",
+        "regionid":"/region"
+      };
+      
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/list${backenddataurl[id]}`
+      );
       dispatch({
         type: "SET_BACKENDDATA",
         id,

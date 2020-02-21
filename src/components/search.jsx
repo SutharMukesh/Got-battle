@@ -31,22 +31,10 @@ class Search extends Component {
   };
 
   onChange = (event, { newValue, method }) => {
-    debugger;
     this.props.onChange(newValue, event.target.id);
-  };
-  // Autosuggest will call this function every time you need to update suggestions.
-  // You already implemented this logic above, so just use it.
-  onSuggestionsFetchRequested = ({ event, value }) => {
-    this.props.setSuggestions(this.getSuggestions(value));
-  };
-
-  // Autosuggest will call this function every time you need to clear suggestions.
-  onSuggestionsClearRequested = () => {
-    this.props.setSuggestions([]);
   };
 
   render() {
-    debugger;
     return (
       <div className="card">
         <form className="needs-validation" novalidate>
@@ -57,21 +45,17 @@ class Search extends Component {
                 <Autosuggest
                   suggestions={this.props.locationid.suggestion}
                   onSuggestionsFetchRequested={({ event, value }) => {
-                    debugger;
                     this.getSuggestions(value, "locationid");
                   }}
                   onSuggestionsClearRequested={() => {
-                    debugger;
                     this.props.setSuggestions([], "locationid");
                   }}
-                  getSuggestionValue={suggestion => {
-                    debugger;
-                    return suggestion;
-                  }}
-                  renderSuggestion={suggestion => {
-                    debugger;
-                    return <div>{suggestion}</div>;
-                  }}
+                  getSuggestionValue={suggestion => suggestion}
+                  renderSuggestion={suggestion => (
+                    <div id="locationid" className="p-2">
+                      {suggestion}
+                    </div>
+                  )}
                   inputProps={{
                     placeholder: "Location",
                     id: "locationid",
@@ -81,23 +65,31 @@ class Search extends Component {
                   }}
                 />
               </div>
-              {/* <div className="form-group col-xs mr-2">
+              <div className="form-group col-xs mr-2">
                 <label htmlFor="battleid">Battle Name</label>
                 <Autosuggest
-                  suggestions={this.props.suggestions}
-                  onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                  onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                  suggestions={this.props.battlenameid.suggestion}
+                  onSuggestionsFetchRequested={({ event, value }) => {
+                    this.getSuggestions(value, "battlenameid");
+                  }}
+                  onSuggestionsClearRequested={() => {
+                    this.props.setSuggestions([], "battlenameid");
+                  }}
                   getSuggestionValue={suggestion => suggestion}
-                  renderSuggestion={suggestion => <div>{suggestion}</div>}
+                  renderSuggestion={suggestion => (
+                    <div id="battlenameid" className="p-2">
+                      {suggestion}
+                    </div>
+                  )}
                   inputProps={{
-                    placeholder: "Battle Name",
-                    value: this.props.values.battlenameid,
+                    placeholder: "Location",
                     id: "battlenameid",
+                    value: this.props.battlenameid.value,
                     className: "form-control",
                     onChange: this.onChange
                   }}
                 />
-              </div> */}
+              </div>
             </div>
             <div className="d-flex flex-row flex-wrap justify-content-center">
               <div className="form-group col-xs mr-2">
@@ -110,23 +102,31 @@ class Search extends Component {
                   required
                 />
               </div>
-              {/* <div className="form-group col-xs mr-2">
+              <div className="form-group col-xs mr-2">
                 <label htmlFor="regionid">Region</label>
                 <Autosuggest
-                  suggestions={this.props.suggestions}
-                  onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                  onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                  suggestions={this.props.regionid.suggestion}
+                  onSuggestionsFetchRequested={({ event, value }) => {
+                    this.getSuggestions(value, "regionid");
+                  }}
+                  onSuggestionsClearRequested={() => {
+                    this.props.setSuggestions([], "regionid");
+                  }}
                   getSuggestionValue={suggestion => suggestion}
-                  renderSuggestion={suggestion => <div>{suggestion}</div>}
+                  renderSuggestion={suggestion => (
+                    <div id="regionid" className="p-2">
+                      {suggestion}
+                    </div>
+                  )}
                   inputProps={{
-                    placeholder: "Region",
-                    value: this.props.regionid.value,
+                    placeholder: "Location",
                     id: "regionid",
+                    value: this.props.regionid.value,
                     className: "form-control",
                     onChange: this.onChange
                   }}
                 />
-              </div> */}
+              </div>
             </div>
           </div>
           <div className="d-flex flex-row justify-content-center">
