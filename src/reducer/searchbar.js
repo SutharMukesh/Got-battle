@@ -20,7 +20,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case "ON_CHANGE":
-      debugger;
+      // debugger;
       state[action.id].value = action.payload;
       return { ...state, [action.id]: { ...state[action.id] } };
     case "SET_BACKENDDATA":

@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import battlereducer  from "./battlereducer";
+import searchbar from "./searchbar";
+import battlecards from "./battlecards";
 
 export default combineReducers({
-    battlereducer
-})
+  searchbar,
+  battlecards
+});

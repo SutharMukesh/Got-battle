@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import autosuggest from "../css/autosuggest.css";
-import {
-  setBackendData,
-  onChange,
-  setSuggestions
-} from "../actions/searchactions";
+import { setBackendData, onChange, setSuggestions } from "../actions/searchbar";
+import { setBattlesData } from "../actions/battlecards";
 import Autosuggest from "react-autosuggest";
 
-class Search extends Component {
+class SearchBar extends Component {
   async componentDidMount() {
     this.props.setBackendData("locationid");
     this.props.setBackendData("battlenameid");
@@ -34,11 +31,33 @@ class Search extends Component {
     this.props.onChange(newValue, event.target.id);
   };
 
+  onSubmitBattleData = event => {
+    event.preventDefault();
+    debugger;
+    const querydata = {
+      location: event.target.locationid.value,
+      region: event.target.regionid.value,
+      year: event.target.yearid.value,
+      name: event.target.battlenameid.value
+    };
+    const queryparams = Object.keys(querydata).map(key => {
+      if (querydata[key])
+        return `${encodeURIComponent(key)}=${encodeURIComponent(
+          querydata[key]
+        )}`;
+    }).filter(item=>item).join("&");
+    this.props.setBattlesData(queryparams);
+  };
+
   render() {
     return (
-      <div className="card">
-        <form className="needs-validation" novalidate>
-          <div className="container d-flex flex-wrap justify-content-center">
+      <div className="card shadow-sm ">
+        <form
+          className="needs-validation"
+          onSubmit={this.onSubmitBattleData}
+          // novalidate
+        >
+          <div className="container mt-4 d-flex flex-wrap justify-content-center">
             <div className="d-flex flex-row flex-wrap justify-content-center">
               <div className="form-group col-xs mr-2">
                 <label htmlFor="locationid">Location</label>
@@ -99,7 +118,6 @@ class Search extends Component {
                   className="form-control"
                   id="yearid"
                   placeholder="year"
-                  required
                 />
               </div>
               <div className="form-group col-xs mr-2">
@@ -139,13 +157,14 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => ({
-  locationid: state.battlereducer.locationid,
-  battlenameid: state.battlereducer.battlenameid,
-  regionid: state.battlereducer.regionid
+  locationid: state.searchbar.locationid,
+  battlenameid: state.searchbar.battlenameid,
+  regionid: state.searchbar.regionid
 });
 
 export default connect(mapStateToProps, {
   setBackendData,
   onChange,
-  setSuggestions
-})(Search);
+  setSuggestions,
+  setBattlesData
+})(SearchBar);

@@ -24,8 +24,6 @@ export function setSuggestions(value, id) {
 export function setBackendData(id) {
   return async function(dispatch) {
     try {
-
-
       let backenddataurl = {
         "locationid":"/location",
         "battlenameid":"/name",
