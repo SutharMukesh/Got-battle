@@ -1,5 +1,4 @@
-/* eslint-disable linebreak-style */
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const battle = new mongoose.Schema({
   name: String,
@@ -26,7 +25,7 @@ const battle = new mongoose.Schema({
   summer: String,
   location: String,
   region: String,
-  note: String
+  note: String,
 });
 
-module.exports = mongoose.model("battle", battle);
+module.exports = mongoose.model('battle', battle);

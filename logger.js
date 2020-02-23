@@ -26,14 +26,10 @@ const logger = winston.createLogger({
     winston.format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss',
     }),
-    winston.format.printf(
-      (info) => {
-        const rid = rTracer.id();
-        return rid
-          ? `${info.timestamp} [request-id:${rid}]: ${info.level}: ${info.message}`
-          : `${info.timestamp} ${info.level}: ${info.message}`;
-      },
-    ),
+    winston.format.printf(info => {
+      const rid = rTracer.id();
+      return rid ? `${info.timestamp} [request-id:${rid}]: ${info.level}: ${info.message}` : `${info.timestamp} ${info.level}: ${info.message}`;
+    }),
   ),
 
   transports: [
@@ -41,23 +37,18 @@ const logger = winston.createLogger({
       level: 'info',
       format: winston.format.combine(
         winston.format.colorize(),
-        winston.format.printf(
-          (info) => {
-            const rid = rTracer.id();
-            return rid
-              ? `${info.timestamp} [request-id:${rid}]: ${info.level}: ${info.message}`
-              : `${info.timestamp} ${info.level}: ${info.message}`;
-          },
-        ),
+        winston.format.printf(info => {
+          const rid = rTracer.id();
+          return rid ? `${info.timestamp} [request-id:${rid}]: ${info.level}: ${info.message}` : `${info.timestamp} ${info.level}: ${info.message}`;
+        }),
       ),
     }),
     dailyRotateFileTransport,
   ],
 });
 
-logger.stream = split().on('data', (message) => {
+logger.stream = split().on('data', message => {
   logger.info(message);
 });
-
 
 module.exports = logger;
