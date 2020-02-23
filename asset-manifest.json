@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/got-battle-react/static/css/main.0f8aa1f6.chunk.css",
-    "main.js": "/got-battle-react/static/js/main.5e9f4860.chunk.js",
-    "main.js.map": "/got-battle-react/static/js/main.5e9f4860.chunk.js.map",
-    "runtime-main.js": "/got-battle-react/static/js/runtime-main.0d941b77.js",
-    "runtime-main.js.map": "/got-battle-react/static/js/runtime-main.0d941b77.js.map",
-    "static/js/2.8ae681ec.chunk.js": "/got-battle-react/static/js/2.8ae681ec.chunk.js",
-    "static/js/2.8ae681ec.chunk.js.map": "/got-battle-react/static/js/2.8ae681ec.chunk.js.map",
-    "index.html": "/got-battle-react/index.html",
-    "precache-manifest.afa46f6186040785eda1ab4f309e0b91.js": "/got-battle-react/precache-manifest.afa46f6186040785eda1ab4f309e0b91.js",
-    "service-worker.js": "/got-battle-react/service-worker.js",
-    "static/css/main.0f8aa1f6.chunk.css.map": "/got-battle-react/static/css/main.0f8aa1f6.chunk.css.map",
-    "static/js/2.8ae681ec.chunk.js.LICENSE.txt": "/got-battle-react/static/js/2.8ae681ec.chunk.js.LICENSE.txt"
+    "main.css": "/Got-battle-react/static/css/main.0f8aa1f6.chunk.css",
+    "main.js": "/Got-battle-react/static/js/main.5e9f4860.chunk.js",
+    "main.js.map": "/Got-battle-react/static/js/main.5e9f4860.chunk.js.map",
+    "runtime-main.js": "/Got-battle-react/static/js/runtime-main.e2055d30.js",
+    "runtime-main.js.map": "/Got-battle-react/static/js/runtime-main.e2055d30.js.map",
+    "static/js/2.8ae681ec.chunk.js": "/Got-battle-react/static/js/2.8ae681ec.chunk.js",
+    "static/js/2.8ae681ec.chunk.js.map": "/Got-battle-react/static/js/2.8ae681ec.chunk.js.map",
+    "index.html": "/Got-battle-react/index.html",
+    "precache-manifest.e9cfe53dee7d824052403254946560de.js": "/Got-battle-react/precache-manifest.e9cfe53dee7d824052403254946560de.js",
+    "service-worker.js": "/Got-battle-react/service-worker.js",
+    "static/css/main.0f8aa1f6.chunk.css.map": "/Got-battle-react/static/css/main.0f8aa1f6.chunk.css.map",
+    "static/js/2.8ae681ec.chunk.js.LICENSE.txt": "/Got-battle-react/static/js/2.8ae681ec.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.0d941b77.js",
+    "static/js/runtime-main.e2055d30.js",
     "static/js/2.8ae681ec.chunk.js",
     "static/css/main.0f8aa1f6.chunk.css",
     "static/js/main.5e9f4860.chunk.js"
