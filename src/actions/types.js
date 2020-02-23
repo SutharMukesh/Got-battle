@@ -1,2 +1,0 @@
-export const FETCH_LOCATION = "FETCH_LOCATION"
-export const LOADING_STATE = "LOADING_STATE"

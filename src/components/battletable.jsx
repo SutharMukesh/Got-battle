@@ -1,5 +1,8 @@
+/* eslint-disable arrow-parens */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable linebreak-style */
-import React from "react";
+import React from 'react';
 
 export default function BattleCards(props) {
   return (
@@ -18,7 +21,7 @@ export default function BattleCards(props) {
           {props.battles.map(battle => (
             <tr>
               {Object.keys(battle).map(key => (
-                <td style={{ width: "1px", "white-space": "nowrap" }}>
+                <td style={{ width: '1px', 'white-space': 'nowrap' }}>
                   {battle[key]}
                 </td>
               ))}

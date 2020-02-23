@@ -1,15 +1,16 @@
-import axios from "axios";
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable space-before-function-paren */
+import axios from 'axios';
 
 export function setBattlesData(query) {
   return async function(dispatch) {
     try {
-      debugger;
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/search/?${query}`
+        `${process.env.REACT_APP_API_URL}/search/?${query}`,
       );
       dispatch({
-        type: "SET_BATTLES",
-        payload: response.data
+        type: 'SET_BATTLES',
+        payload: response.data,
       });
     } catch (error) {
       alert(error);

@@ -1,8 +1,12 @@
+/* eslint-disable arrow-parens */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prefer-stateless-function */
 /* eslint-disable linebreak-style */
-import React, { Component } from "react";
-import SearchBar from "./searchbar";
-import BattleCards from "./battletable";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import SearchBar from './searchbar';
+import BattleCards from './battletable';
 
 /**
  * Home Component
@@ -27,7 +31,7 @@ class Home extends Component {
   }
 }
 const mapStateToProps = state => ({
-  battles: state.battlecards.battles
+  battles: state.battlecards.battles,
 });
 
 export default connect(mapStateToProps)(Home);

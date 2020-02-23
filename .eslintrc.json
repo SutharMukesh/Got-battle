@@ -4,9 +4,12 @@
         "es6": true
     },
     "extends": [
+        "eslint:recommended",
         "plugin:react/recommended",
-        "airbnb",
-        "plugin:jsdoc/recommended"
+        "plugin:prettier/recommended",
+        "plugin:jsdoc/recommended",
+        "prettier",
+        "airbnb"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -21,9 +24,17 @@
     },
     "plugins": [
         "react",
+        "prettier",
         "jsdoc"
     ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "rules": {
-        
+        "linebreak-style": "off",
+        "prettier/prettier": "error",
+        "react/jsx-filename-extension":0
     }
 }
