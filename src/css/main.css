@@ -2120,7 +2120,7 @@ pre code {
 }
 
 .table .thead-light th {
-  color: #495057;
+  color: #53354a;
   background-color: #e9ecef;
   border-color: #53354a;
 }
@@ -10765,8 +10765,12 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .headtitle {
-  color: #ffffff;
+  color: #ffe3e3;
   letter-spacing: 2rem;
+}
+
+.table-head {
+  font-weight: lighter;
 }
 
 body {
