@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Got-battle-react/precache-manifest.e9cfe53dee7d824052403254946560de.js"
+  "/Got-battle-react/precache-manifest.dbd6f4abd312dad4feb347fb676c496a.js"
 );
 
 self.addEventListener('message', (event) => {

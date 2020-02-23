@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Got-battle-react/static/css/main.0f8aa1f6.chunk.css",
-    "main.js": "/Got-battle-react/static/js/main.5e9f4860.chunk.js",
-    "main.js.map": "/Got-battle-react/static/js/main.5e9f4860.chunk.js.map",
+    "main.js": "/Got-battle-react/static/js/main.4300d04f.chunk.js",
+    "main.js.map": "/Got-battle-react/static/js/main.4300d04f.chunk.js.map",
     "runtime-main.js": "/Got-battle-react/static/js/runtime-main.e2055d30.js",
     "runtime-main.js.map": "/Got-battle-react/static/js/runtime-main.e2055d30.js.map",
     "static/js/2.8ae681ec.chunk.js": "/Got-battle-react/static/js/2.8ae681ec.chunk.js",
     "static/js/2.8ae681ec.chunk.js.map": "/Got-battle-react/static/js/2.8ae681ec.chunk.js.map",
     "index.html": "/Got-battle-react/index.html",
-    "precache-manifest.e9cfe53dee7d824052403254946560de.js": "/Got-battle-react/precache-manifest.e9cfe53dee7d824052403254946560de.js",
+    "precache-manifest.dbd6f4abd312dad4feb347fb676c496a.js": "/Got-battle-react/precache-manifest.dbd6f4abd312dad4feb347fb676c496a.js",
     "service-worker.js": "/Got-battle-react/service-worker.js",
     "static/css/main.0f8aa1f6.chunk.css.map": "/Got-battle-react/static/css/main.0f8aa1f6.chunk.css.map",
     "static/js/2.8ae681ec.chunk.js.LICENSE.txt": "/Got-battle-react/static/js/2.8ae681ec.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.e2055d30.js",
     "static/js/2.8ae681ec.chunk.js",
     "static/css/main.0f8aa1f6.chunk.css",
-    "static/js/main.5e9f4860.chunk.js"
+    "static/js/main.4300d04f.chunk.js"
   ]
 }

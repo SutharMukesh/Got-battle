@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3f0389998c9ce5e5a11f4e5bbab18b8d",
+    "revision": "0cd97b06f2b59127cde397e9af4a8beb",
     "url": "/Got-battle-react/index.html"
   },
   {
-    "revision": "b7a603a84519c3f5cd0a",
+    "revision": "535964dd999bf0bc2cd8",
     "url": "/Got-battle-react/static/css/main.0f8aa1f6.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Got-battle-react/static/js/2.8ae681ec.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b7a603a84519c3f5cd0a",
-    "url": "/Got-battle-react/static/js/main.5e9f4860.chunk.js"
+    "revision": "535964dd999bf0bc2cd8",
+    "url": "/Got-battle-react/static/js/main.4300d04f.chunk.js"
   },
   {
     "revision": "a969186a135ac9940a3a",
