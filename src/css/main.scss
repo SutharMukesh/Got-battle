@@ -7,23 +7,26 @@ $theme-colors: (
   "primary": #53354a
 );
 
-
 $table-color: #2b2e4a;
-$table-dark-color:#fff4f4;
-// $table-head-color:#53354a;
-$table-dark-bg:#53354a;
-$table-border-color:#53354a;
+$table-dark-color: #fff4f4;
+$table-head-color:#53354a;
+$table-dark-bg: #53354a;
+$table-border-color: #53354a;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 .headtitle {
-    color: #ffffff;
-    letter-spacing: 2rem;
+  color: #ffe3e3;
+  letter-spacing: 2rem;
 }
 
-body{
-    background-color: #2b2e4a;
-    font-family: sans-serif;
+.table-head {
+  font-weight: lighter;
+}
+
+body {
+  background-color: #2b2e4a;
+  font-family: sans-serif;
 }
 
 .react-autosuggest__suggestions-container--open {
